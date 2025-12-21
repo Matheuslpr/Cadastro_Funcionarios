@@ -29,10 +29,11 @@ public class TarefasModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
     @Column(name = "id")
-    private String titulo;
+    private Long id;
     @Column(name = "titulo")
+    private String titulo;
+    @Column(name = "descricao")
     private String descricao;
     @Column(name = "concluida")
     private boolean concluida;
