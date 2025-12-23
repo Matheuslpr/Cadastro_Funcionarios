@@ -35,9 +35,6 @@ public class TarefasModel {
     private String titulo;
     @Column(name = "descricao")
     private String descricao;
-    @Column(name = "concluida")
-    private boolean concluida;
-
 
     @OneToMany(mappedBy = "tarefas")
     @JsonIgnore

@@ -20,7 +20,6 @@ public class TarefasDTO {
     private Long id;
     private String titulo;
     private String descricao;
-    private boolean concluida;
     @JsonIgnore
     List<FuncionariosModel> funcionarios;
 

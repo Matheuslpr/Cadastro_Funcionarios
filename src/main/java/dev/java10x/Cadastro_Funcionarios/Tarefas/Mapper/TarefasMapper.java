@@ -13,7 +13,6 @@ public class TarefasMapper {
         tarefasModel.setId(tarefasDTO.getId());
         tarefasModel.setTitulo(tarefasDTO.getTitulo());
         tarefasModel.setDescricao(tarefasDTO.getDescricao());
-        tarefasModel.setConcluida(tarefasDTO.isConcluida());
         tarefasModel.setFuncionarios(tarefasDTO.getFuncionarios());
 
         return tarefasModel;
@@ -25,7 +24,6 @@ public class TarefasMapper {
         tarefasDTO.setId(tarefasDTO.getId());
         tarefasDTO.setTitulo(tarefasDTO.getTitulo());
         tarefasDTO.setDescricao(tarefasDTO.getDescricao());
-        tarefasDTO.setConcluida(tarefasDTO.isConcluida());
         tarefasDTO.setFuncionarios(tarefasDTO.getFuncionarios());
 
         return tarefasDTO;
