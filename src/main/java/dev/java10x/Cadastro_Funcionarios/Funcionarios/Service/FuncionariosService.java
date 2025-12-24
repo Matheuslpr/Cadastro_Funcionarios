@@ -36,8 +36,8 @@ public class FuncionariosService {
     }
 
 
-    public FuncionariosDTO criarFuncionario(FuncionariosDTO funcionariosDTO){
-        FuncionariosModel funcionarios = funcionariosMapper.map(funcionariosDTO);
+    public FuncionariosDTO criarFuncionario(FuncionariosDTO funcionario){
+        FuncionariosModel funcionarios = funcionariosMapper.map(funcionario);
         funcionarios = funcionariosRepository.save(funcionarios);
         return funcionariosMapper.map(funcionarios);
     }
@@ -48,14 +48,16 @@ public class FuncionariosService {
     }
 
 
-    public FuncionariosDTO alterarFuncionarios(Long id, FuncionariosDTO funcionariosDTO){
+    public FuncionariosDTO alterarFuncionarios(Long id, FuncionariosDTO funcionario){
         Optional<FuncionariosModel> funcionarioExistente = funcionariosRepository.findById(id);
         if(funcionarioExistente.isPresent()){
-            FuncionariosModel funcionarioAtualizado = funcionariosMapper.map(funcionariosDTO);
+            FuncionariosModel funcionarioAtualizado = funcionariosMapper.map(funcionario);
             funcionarioAtualizado.setId(id);
             FuncionariosModel funcionarioSalvo = funcionariosRepository.save(funcionarioAtualizado);
             return funcionariosMapper.map(funcionarioSalvo);
         }
         return null;
     }
+
+
 }

@@ -20,8 +20,8 @@ public class FuncionariosController {
 
 
     @PostMapping("/criar")
-    public ResponseEntity<String> criarFuncionario(@RequestBody FuncionariosDTO funcionariosDTO){
-        FuncionariosDTO novoFuncionaio = funcionariosService.criarFuncionario(funcionariosDTO);
+    public ResponseEntity<String> criarFuncionario(@RequestBody FuncionariosDTO funcionario){
+        FuncionariosDTO novoFuncionaio = funcionariosService.criarFuncionario(funcionario);
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body("Funcionario criado com sucesso: " + novoFuncionaio.getNome() + (" ID") + novoFuncionaio.getId());
     }
@@ -49,10 +49,9 @@ public class FuncionariosController {
 
     @PutMapping("/alterar/{id}")
     public ResponseEntity<?> alterarFincionarios(@PathVariable Long id, @RequestBody FuncionariosDTO funcionarioAtualizado){
-
-        FuncionariosDTO funcionariosDTO = funcionariosService.alterarFuncionarios(id, funcionarioAtualizado);
-        if(funcionariosDTO != null){
-            return ResponseEntity.ok(funcionariosDTO);
+        FuncionariosDTO funcionario = funcionariosService.alterarFuncionarios(id, funcionarioAtualizado);
+        if(funcionario != null){
+            return ResponseEntity.ok(funcionario);
         } else {
             return  ResponseEntity.status(HttpStatus.NOT_FOUND)
                     .body("Funcionario com ID: " + id + " não existe em nosso sistema");
