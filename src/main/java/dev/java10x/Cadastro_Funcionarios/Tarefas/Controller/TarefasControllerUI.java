@@ -40,6 +40,18 @@ public class TarefasControllerUI {
         }
     }
 
+    @GetMapping("/alterar/{id}")
+    public String editarTarefaFormulario(@PathVariable Long id, Model model) {
+        TarefasDTO tarefa = tarefasService.listarTarefaId(id);
+        if (tarefa == null) {
+            return "redirect:/tarefas/ui?error=notfound";
+        }
+        model.addAttribute("Tarefa", tarefa);
+        model.addAttribute("titulo", tarefa.getTitulo());
+        model.addAttribute("descricao", tarefa.getDescricao());
+        model.addAttribute("funcionario", tarefa.getFuncionarios());
+        return "funcionario/form";
+    }
 
     @GetMapping("/adicionar")
     public String mostrarFormularioAdicionartarefas(Model model) {

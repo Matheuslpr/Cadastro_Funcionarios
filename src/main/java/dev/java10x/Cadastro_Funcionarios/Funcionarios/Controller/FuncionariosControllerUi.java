@@ -24,7 +24,7 @@ public class FuncionariosControllerUi {
     public String listarFuncionarios(Model model){
         List<FuncionariosDTO> funcionarios = funcionariosService.listarFuncionarios();
         model.addAttribute("funcionarios", funcionarios);
-        return "listarFuncionarios";
+        return "listarfuncionarios";
     }
 
 
@@ -52,6 +52,19 @@ public class FuncionariosControllerUi {
     public String deletarFuncionario(@PathVariable Long id){
             funcionariosService.deletarFuncionario(id);
             return "redirect:/funcionarios/ui/listar";
+    }
+
+    @GetMapping("/alterar/{id}")
+    public String editarFuncionarioFormulario(@PathVariable Long id, Model model) {
+        FuncionariosDTO funcionario = funcionariosService.listarFuncionariosId(id);
+        if (funcionario == null) {
+            return "redirect:/funcionarios/ui?error=notfound";
+        }
+        model.addAttribute("funcionario", funcionario);
+        model.addAttribute("cargo", funcionario.getCargo());
+        model.addAttribute("email", funcionario.getEmail());
+        model.addAttribute("tarefa", funcionario.getTarefas());
+        return "funcionario/form";
     }
 
     @PostMapping("/salvar")
