@@ -21,10 +21,10 @@ public class TarefasMapper {
     public TarefasDTO map(TarefasModel tarefasModel){
 
         TarefasDTO tarefasDTO = new TarefasDTO();
-        tarefasDTO.setId(tarefasDTO.getId());
-        tarefasDTO.setTitulo(tarefasDTO.getTitulo());
-        tarefasDTO.setDescricao(tarefasDTO.getDescricao());
-        tarefasDTO.setFuncionarios(tarefasDTO.getFuncionarios());
+        tarefasDTO.setId(tarefasModel.getId());
+        tarefasDTO.setTitulo(tarefasModel.getTitulo());
+        tarefasDTO.setDescricao(tarefasModel.getDescricao());
+        tarefasDTO.setFuncionarios(tarefasModel.getFuncionarios());
 
         return tarefasDTO;
     }

@@ -23,12 +23,12 @@ public class FuncionariosMapper {
     public  FuncionariosDTO map (FuncionariosModel funcionariosModel){
 
         FuncionariosDTO funcionariosDTO = new FuncionariosDTO();
-        funcionariosDTO.setId(funcionariosDTO.getId());
-        funcionariosDTO.setImgUrl(funcionariosDTO.getImgUrl());
-        funcionariosDTO.setNome(funcionariosDTO.getNome());
-        funcionariosDTO.setEmail(funcionariosDTO.getEmail());
-        funcionariosDTO.setCargo(funcionariosDTO.getCargo());
-        funcionariosDTO.setTarefas(funcionariosDTO.getTarefas());
+        funcionariosDTO.setId(funcionariosModel.getId());
+        funcionariosDTO.setImgUrl(funcionariosModel.getImgUrl());
+        funcionariosDTO.setNome(funcionariosModel.getNome());
+        funcionariosDTO.setEmail(funcionariosModel.getEmail());
+        funcionariosDTO.setCargo(funcionariosModel.getCargo());
+        funcionariosDTO.setTarefas(funcionariosModel.getTarefas());
 
         return funcionariosDTO;
     }
