@@ -56,16 +56,19 @@ public class FuncionariosControllerUi {
 
     @GetMapping("/alterar/{id}")
     public String editarFuncionarioFormulario(@PathVariable Long id, Model model) {
+
+
         FuncionariosDTO funcionario = funcionariosService.listarFuncionariosId(id);
+
         if (funcionario == null) {
             return "redirect:/funcionarios/ui?error=notfound";
         }
+
         model.addAttribute("funcionario", funcionario);
-        model.addAttribute("cargo", funcionario.getCargo());
-        model.addAttribute("email", funcionario.getEmail());
-        model.addAttribute("tarefa", funcionario.getTarefas());
-        return "funcionario/form";
+
+        return "funcionarios/editar"; // página HTML de edição
     }
+
 
     @PostMapping("/salvar")
     public String salvarFuncionarios(@ModelAttribute FuncionariosDTO funcionario, RedirectAttributes redirectAttributes) {

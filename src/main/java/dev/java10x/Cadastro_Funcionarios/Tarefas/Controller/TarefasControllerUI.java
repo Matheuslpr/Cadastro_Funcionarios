@@ -46,10 +46,7 @@ public class TarefasControllerUI {
         if (tarefa == null) {
             return "redirect:/tarefas/ui?error=notfound";
         }
-        model.addAttribute("Tarefa", tarefa);
-        model.addAttribute("titulo", tarefa.getTitulo());
-        model.addAttribute("descricao", tarefa.getDescricao());
-        model.addAttribute("funcionario", tarefa.getFuncionarios());
+        model.addAttribute("Tarefas", tarefa);
         return "funcionario/form";
     }
 
