@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Adicionar Tarefa</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            background-color: #f4f6f8;
+            padding: 30px;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .form-container {
+            max-width: 500px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .mensagem {
+            margin-bottom: 15px;
+            padding: 10px;
+            background-color: #e8f5e9;
+            color: #2e7d32;
+            border-radius: 6px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-top: 12px;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input,
+        textarea {
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+            resize: vertical;
+        }
+
+        input:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #1976d2;
+            box-shadow: 0 0 0 2px rgba(25, 118, 210, 0.15);
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 12px;
+            background-color: #1976d2;
+            color: #fff;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #125ea9;
+        }
+
+        a {
+            display: block;
+            margin-top: 20px;
+            text-align: center;
+            text-decoration: none;
+            font-weight: bold;
+            color: #1976d2;
+        }
+
+        a:hover {
+            color: #0d47a1;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Adicionar Nova Tarefa</h1>
+
+<div class="form-container">
+
+    <div th:if="${mensagem}" class="mensagem" th:text="${mensagem}"></div>
+
+    <form th:action="@{/tarefas/ui/salvar}"
+          th:object="${tarefa}"
+          method="post">
+
+        <label for="titulo">Título</label>
+        <input type="text"
+               id="titulo"
+               th:field="*{titulo}"
+               placeholder="Digite o título da tarefa"
+               required>
+
+        <label for="descricao">Descrição</label>
+        <textarea id="descricao"
+                  th:field="*{descricao}"
+                  placeholder="Descreva a tarefa"
+                  rows="4"
+                  required></textarea>
+
+        <button type="submit">Cadastrar Tarefa</button>
+    </form>
+
+    <a th:href="@{/tarefas/ui/listar}">
+         Voltar para a lista de tarefas
+    </a>
+
+</div>
+
+</body>
+</html>

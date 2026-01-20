@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>Tabela de Tarefas</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            background-color: #f4f6f8;
+            padding: 30px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 25px;
+            color: #333;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+        }
+
+        thead {
+            background-color: #1976d2;
+            color: white;
+        }
+
+        thead th {
+            padding: 12px;
+            text-align: left;
+        }
+
+        tbody td {
+            padding: 12px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tbody tr:hover {
+            background-color: #eef4ff;
+        }
+
+        td a {
+            text-decoration: none;
+            margin-right: 10px;
+            font-weight: bold;
+            color: #1976d2;
+        }
+
+        td a:hover {
+            color: #0d47a1;
+        }
+
+        .voltar {
+            display: inline-block;
+            margin-top: 20px;
+            text-decoration: none;
+            font-weight: bold;
+            color: #1976d2;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Lista de Tarefas</h1>
+
+<table>
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Título</th>
+        <th>Descrição</th>
+        <th>Ações</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr th:each="tarefa : ${tarefas}">
+        <td th:text="${tarefa.id}"></td>
+        <td th:text="${tarefa.titulo}"></td>
+        <td th:text="${tarefa.descricao}"></td>
+
+        <td>
+            <a th:href="@{/tarefas/ui/listar/{id}(id=${tarefa.id})}">Ver</a>
+            <a th:href="@{/tarefas/ui/alterar/{id}(id=${tarefa.id})}">Alterar</a>
+            <a th:href="@{/tarefas/ui/deletar/{id}(id=${tarefa.id})}">Deletar</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<a class="voltar" th:href="@{/funcionarios/ui/listar}">
+     Voltar para a lista de funcionários
+</a>
+
+</body>
+</html>

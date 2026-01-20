@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Tabela de Funcionários</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            background-color: #f4f6f8;
+            padding: 30px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 25px;
+            color: #333;
+        }
+
+        .btn-adicionar {
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 10px 18px;
+            background-color: #4CAF50;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+        }
+
+        thead {
+            background-color: #1976d2;
+            color: white;
+        }
+
+        thead th,
+        tbody td {
+            padding: 12px;
+            text-align: left;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        td img {
+            border-radius: 8px;
+            object-fit: cover;
+        }
+
+        td a {
+            margin-right: 10px;
+            text-decoration: none;
+            font-weight: bold;
+            color: #1976d2;
+        }
+    </style>
+</head>
+
+<body>
+
+<h1>Lista de Funcionários</h1>
+
+<a class="btn-adicionar" th:href="@{/funcionarios/ui/adicionar}">
+    Adicionar Novo Funcionário
+</a>
+
+<a class="btn-adicionar" th:href="@{/tarefas/ui/listar}">
+    Ver Lista de Tarefas
+</a>
+
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Imagem</th>
+        <th>Nome</th>
+        <th>Cargo</th>
+        <th>Email</th>
+        <th>Tarefas</th>
+        <th>Ações</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr th:each="funcionario : ${funcionarios}">
+        <td th:text="${funcionario.id}"></td>
+
+        <td>
+            <img th:src="${funcionario.imgUrl}" width="100" height="100">
+        </td>
+
+        <td th:text="${funcionario.nome}"></td>
+        <td th:text="${funcionario.cargo}"></td>
+        <td th:text="${funcionario.email}"></td>
+
+        <td>
+                <span th:if="${#lists.isEmpty(funcionario.tarefas)}">
+                    Sem tarefas cadastradas
+                </span>
+
+            <ul th:if="${!#lists.isEmpty(funcionario.tarefas)}">
+                <li th:each="tarefa : ${funcionario.tarefas}">
+                    <strong th:text="${tarefa.titulo}"></strong> -
+                    <span th:text="${tarefa.descricao}"></span>
+                </li>
+            </ul>
+        </td>
+
+        <td>
+            <a th:href="@{/funcionario/ui/listar/{id}(id=${funcionario.id})}">
+                Ver
+            </a>
+            <a th:href="@{/funcionario/ui/alterar/{id}(id=${funcionario.id})}">
+                Alterar
+            </a>
+            <a th:href="@{/funcionario/ui/deletar/{id}(id=${funcionario.id})}">
+                Deletar
+            </a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>
+
+

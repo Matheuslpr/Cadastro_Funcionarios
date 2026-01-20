@@ -24,7 +24,7 @@ public class FuncionariosControllerUi {
     public String listarFuncionarios(Model model){
         List<FuncionariosDTO> funcionarios = funcionariosService.listarFuncionarios();
         model.addAttribute("funcionarios", funcionarios);
-        return "listarfuncionarios";
+        return "listarFuncionario";
     }
 
 
@@ -33,10 +33,10 @@ public class FuncionariosControllerUi {
         FuncionariosDTO funcionariosId = funcionariosService.listarFuncionariosId(id);
         if(funcionariosId != null){
             model.addAttribute("funcionarios", funcionariosId);
-            return "detalhesfuncionarios";
+            return "detalhesFuncionario";
         }else {
             model.addAttribute("mensagem", "Funcionario não encontrado");
-            return "listarfuncionarios";
+            return "listarFuncionario";
         }
     }
 
@@ -44,7 +44,7 @@ public class FuncionariosControllerUi {
     @GetMapping("/adicionar")
     public String mostrarFormularioAdicionarFuncionarios(Model model) {
         model.addAttribute("funcionarios", new FuncionariosDTO());
-        return "adicionarfuncionarios";
+        return "adicionarFuncionario";
     }
 
 
@@ -66,7 +66,7 @@ public class FuncionariosControllerUi {
 
         model.addAttribute("funcionario", funcionario);
 
-        return "funcionarios/editar"; // página HTML de edição
+        return "listarFuncionario";
     }
 
 

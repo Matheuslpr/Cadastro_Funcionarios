@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Adicionar Funcionário</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            background-color: #f4f6f8;
+            padding: 30px;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .form-container {
+            max-width: 500px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .mensagem {
+            margin-bottom: 15px;
+            padding: 10px;
+            border-radius: 6px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .sucesso {
+            background-color: #e8f5e9;
+            color: #2e7d32;
+        }
+
+        .erro {
+            background-color: #ffebee;
+            color: #c62828;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-top: 12px;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input {
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #1976d2;
+            box-shadow: 0 0 0 2px rgba(25, 118, 210, 0.15);
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 12px;
+            background-color: #1976d2;
+            color: #fff;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #125ea9;
+        }
+
+        a {
+            display: block;
+            margin-top: 20px;
+            text-align: center;
+            text-decoration: none;
+            font-weight: bold;
+            color: #1976d2;
+        }
+
+        a:hover {
+            color: #0d47a1;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Adicionar Novo Funcionário</h1>
+
+<div class="form-container">
+
+    <div th:if="${mensagem}"
+         class="mensagem sucesso"
+         th:text="${mensagem}">
+    </div>
+
+    <form th:action="@{/funcionarios/ui/salvar}"
+          th:object="${funcionario}"
+          method="post">
+
+        <label for="nome">Nome</label>
+        <input type="text"
+               id="nome"
+               th:field="*{nome}"
+               placeholder="Digite o nome"
+               required>
+
+        <label for="email">Email</label>
+        <input type="email"
+               id="email"
+               th:field="*{email}"
+               placeholder="email@exemplo.com"
+               required>
+
+        <label for="imgUrl">URL da Imagem</label>
+        <input type="text"
+               id="imgUrl"
+               th:field="*{imgUrl}"
+               placeholder="https://..."
+               required>
+
+        <label for="cargo">Cargo</label>
+        <input type="text"
+               id="cargo"
+               th:field="*{cargo}"
+               placeholder="Ex: Desenvolvedor"
+               required>
+
+        <button type="submit">Cadastrar Funcionário</button>
+    </form>
+
+    <a th:href="@{/funcionarios/ui/listar}">
+         Voltar para a lista de funcionarios
+    </a>
+</div>
+
+</body>
+</html>

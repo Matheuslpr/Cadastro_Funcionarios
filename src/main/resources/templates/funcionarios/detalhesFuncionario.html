@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Detalhes do Funcionario</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            background-color: #f4f6f8;
+            padding: 30px;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        /* Card */
+        .card {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .card img {
+            display: block;
+            margin: 0 auto 20px;
+            border-radius: 12px;
+            object-fit: cover;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 15px;
+            color: #1976d2;
+        }
+
+        p {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        h3 {
+            margin-top: 25px;
+            margin-bottom: 15px;
+            color: #444;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        thead {
+            background-color: #1976d2;
+            color: #fff;
+        }
+
+        thead th,
+        tbody td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tbody tr:hover {
+            background-color: #eef4ff;
+        }
+
+        .voltar {
+            display: inline-block;
+            margin-top: 20px;
+            text-decoration: none;
+            font-weight: bold;
+            color: #1976d2;
+        }
+
+        .voltar:hover {
+            color: #0d47a1;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Detalhes do Funcionario</h1>
+
+<div class="card">
+    <img th:src="${funcionario.imgUrl}"
+         th:alt="${funcionario.nome}"
+         width="200"/>
+
+    <h2 th:text="${funcionario.nome}"></h2>
+
+    <p><strong>Email:</strong> <span th:text="${funcionario.email}"></span></p>
+    <p><strong>Cargo:</strong> <span th:text="${funcionario.cargo}"></span></p>
+
+    <h3>Tarefas</h3>
+
+    <table th:if="${funcionario.tarefas != null}">
+        <thead>
+        <tr>
+            <th>Título</th>
+            <th>Descrição</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="tarefa : ${funcionario.tarefas}">
+            <td th:text="${tarefa.titulo}"></td>
+            <td th:text="${tarefa.descricao}"></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <p th:if="${funcionario.tarefas == null}">
+        Este funcionário não possui tarefas cadastradas.
+    </p>
+</div>
+
+<a class="voltar" th:href="@{/funcionarios/ui/listar}">
+     Voltar para a lista de funcionários
+</a>
+
+</body>
+</html>

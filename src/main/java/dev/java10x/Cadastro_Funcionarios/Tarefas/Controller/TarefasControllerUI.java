@@ -24,7 +24,7 @@ public class TarefasControllerUI {
     public String listarTarefa(Model model){
         List<TarefasDTO> tarefas = tarefasService.listarTarefa();
         model.addAttribute("tarefas", tarefas);
-        return "listartarefas";
+        return "listarTarefa";
     }
 
 
@@ -33,10 +33,10 @@ public class TarefasControllerUI {
         TarefasDTO tarefasId = tarefasService.listarTarefaId(id);
         if(tarefasId != null){
             model.addAttribute("tarefas", tarefasId);
-            return "detalhestarefas";
+            return "detalhesTarefa";
         }else {
             model.addAttribute("mensagem", "Tarefas não encontrada");
-            return "listartarefas";
+            return "listarTarefa";
         }
     }
 
@@ -47,13 +47,13 @@ public class TarefasControllerUI {
             return "redirect:/tarefas/ui?error=notfound";
         }
         model.addAttribute("Tarefas", tarefa);
-        return "funcionario/form";
+        return "listarTarefa";
     }
 
     @GetMapping("/adicionar")
     public String mostrarFormularioAdicionartarefas(Model model) {
         model.addAttribute("tarefas", new TarefasDTO());
-        return "adicionartarefas";
+        return "adicionarTarefa";
     }
 
 

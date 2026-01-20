@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Detalhes da Tarefa</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            background-color: #f4f6f8;
+            padding: 30px;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 15px;
+            color: #1976d2;
+        }
+
+        p {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            text-decoration: none;
+            font-weight: bold;
+            color: #1976d2;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Detalhes da Tarefa</h1>
+
+<div class="card">
+
+    <h2 th:text="${tarefa.titulo}"></h2>
+
+    <p>
+        <strong>Descrição:</strong>
+        <span th:text="${tarefa.descricao}"></span>
+    </p>
+
+    <p th:if="${tarefa.funcionario != null}">
+        <strong>Funcionário:</strong>
+        <span th:text="${tarefa.funcionario.nome}"></span>
+    </p>
+
+    <p th:if="${tarefa.funcionario == null}">
+        <strong>Funcionário:</strong> Não atribuído
+    </p>
+
+</div>
+
+<a th:href="@{/tarefas/ui/listar}">
+     Voltar para a lista de tarefas
+</a>
+
+</body>
+</html>
